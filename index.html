@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hverdag — Furniture for the everyday</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300..500&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --paper: #161512;
+      --ink: #e9e6df;
+      --muted: #8f8c83;
+      --line: #2b2a26;
+      --spruce: #8aac93;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: "Geist", system-ui, -apple-system, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .frame {
+      width: min(72rem, 100% - 3rem);
+      margin-inline: auto;
+    }
+
+    /* ---------- header ---------- */
+
+    header {
+      padding-block: 1.75rem;
+    }
+
+    header .frame {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      nav a:hover {
+        color: var(--ink);
+      }
+    }
+
+    /* ---------- hero ---------- */
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      align-items: end;
+      gap: 3rem;
+      padding-block: 4rem 0;
+    }
+
+    .hero-copy {
+      padding-bottom: 4.5rem;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.75rem, 6.2vw, 4.75rem);
+      font-weight: 300;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+      max-width: 12ch;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--spruce);
+    }
+
+    .lede {
+      margin-top: 1.75rem;
+      max-width: 42ch;
+      font-size: 1.0625rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-top: 2.5rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      padding-block: 0.25rem;
+      transition: transform 160ms var(--ease-out);
+    }
+
+    .cta:active {
+      transform: scale(0.97);
+    }
+
+    .cta .label {
+      position: relative;
+    }
+
+    .cta .label::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 1px;
+      background: var(--ink);
+      transform-origin: left;
+      transition: transform 250ms var(--ease-out), background-color 150ms ease;
+    }
+
+    .cta svg {
+      transition: transform 250ms var(--ease-out);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .cta:hover .label::after {
+        background: var(--spruce);
+        transform: scaleX(0.4);
+      }
+      .cta:hover svg {
+        transform: translateX(4px);
+      }
+      .cta:hover {
+        color: var(--spruce);
+      }
+    }
+
+    .cta:focus-visible,
+    nav a:focus-visible,
+    .wordmark:focus-visible {
+      outline: 2px solid var(--spruce);
+      outline-offset: 4px;
+      border-radius: 1px;
+    }
+
+    /* ---------- chair ---------- */
+
+    .hero-figure {
+      justify-self: end;
+      width: min(15rem, 100%);
+    }
+
+    .chair {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .chair path {
+      fill: none;
+      stroke: var(--ink);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ---------- baseline ---------- */
+
+    .baseline {
+      border-top: 1px solid var(--line);
+    }
+
+    .baseline .frame {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-block: 1.25rem;
+    }
+
+    /* ---------- entrance motion ---------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: rise 700ms var(--ease-out) forwards;
+    }
+
+    .reveal:nth-child(2) { animation-delay: 60ms; }
+    .reveal:nth-child(3) { animation-delay: 120ms; }
+    .reveal:nth-child(4) { animation-delay: 180ms; }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .chair path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw 900ms var(--ease-out) forwards;
+    }
+
+    .chair path:nth-child(1) { animation-delay: 150ms; }
+    .chair path:nth-child(2) { animation-delay: 350ms; }
+    .chair path:nth-child(3) { animation-delay: 500ms; }
+    .chair path:nth-child(4) { animation-delay: 620ms; }
+    .chair path:nth-child(5) { animation-delay: 720ms; }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        transform: none;
+        animation: fade 300ms ease forwards;
+      }
+      .chair path {
+        stroke-dasharray: none;
+        stroke-dashoffset: 0;
+        opacity: 0;
+        animation: fade 300ms ease forwards;
+      }
+      @keyframes fade {
+        to { opacity: 1; }
+      }
+    }
+
+    /* ---------- mobile ---------- */
+
+    @media (max-width: 44rem) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding-top: 2.5rem;
+      }
+
+      .hero-copy {
+        padding-bottom: 0;
+      }
+
+      .hero-figure {
+        justify-self: start;
+        width: 9.5rem;
+        margin-top: 2rem;
+      }
+
+      .baseline .frame {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+      }
+
+      nav {
+        gap: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="frame">
+      <a class="wordmark" href="#">Hverdag</a>
+      <nav aria-label="Main">
+        <a href="#">Collection</a>
+        <a href="#">Workshop</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="frame hero-grid">
+      <div class="hero-copy">
+        <span class="meta eyebrow reveal">Copenhagen furniture workshop</span>
+        <h1 class="reveal">Made for the <em>everyday</em>, built for decades.</h1>
+        <p class="lede reveal">
+          Solid ash and oak pieces, designed and made in our workshop on
+          Refshaleøen.
+        </p>
+        <a class="cta reveal" href="#">
+          <span class="label">View the collection</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <figure class="hero-figure" aria-hidden="true">
+        <svg class="chair" viewBox="0 0 220 274">
+          <!-- back leg rising into the back post -->
+          <path pathLength="1" d="M170 22 C163 100 156 190 152 272" />
+          <!-- crest rail curving forward and down -->
+          <path pathLength="1" d="M170 24 C152 30 134 38 122 48" />
+          <!-- seat -->
+          <path pathLength="1" d="M46 156 L159 150" />
+          <!-- front leg -->
+          <path pathLength="1" d="M56 156 C50 196 46 234 44 272" />
+          <!-- stretcher -->
+          <path pathLength="1" d="M54 220 L148 224" />
+        </svg>
+      </figure>
+    </div>
+
+    <div class="baseline">
+      <div class="frame">
+        <span class="meta">Est. 2011</span>
+        <span class="meta">Made to order</span>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
